@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="style.css">
+    <title>Got Kilt - Home</title>
+    <link rel="icon" href="favicon_final.ico" type="image/x-icon">
+</head>
+<body>
+<!-- HEADER -->
+<header>
+    <a href="index.html"><img src="img/Got_kilt_horizontal_logo_copy.png" alt="Logo"></a>
+    <nav>
+        <a href="shop.html">SHOP</a>
+        <a href="about.html">ABOUT</a>
+        <a href="help.html">HELP</a>
+    </nav>
+    <div class="search-wrapper">
+        <label for="search" class="sr-only">Search</label>
+        <input id="search" type="text" placeholder="Search...">
+        <span>❤</span>
+        <span>
+            <a href="cart.html">🛒</a>
+            <span id="cartCount">0</span>
+        </span>
+        <span>👤</span>
+    </div>
+</header>
+<!-- TITLE -->
+<div class="title-banner">Welcome to Got Kilt</div>
+<!-- HERO CAROUSEL -->
+<div class="grid-wrapper">
+    <div class="hero">
+        <div class="slides">
+            <img src="img/index_kilt_1.jpg" height="500" width="700" class="slide active" alt="index_kilt_1"/>
+            <img src="img/index_kilt_2.jpg" height="799" width="1200" class="slide" alt="index_kilt_2"/>
+            <img src="img/index_kilt_3.jpg" height="374" width="528" class="slide" alt="index_kilt_3"/>
+            <img src="img/index_kilt_4.jpg" height="1500" width="3000" class="slide" alt="index_kilt_4"/>
+            <img src="img/index_kilt_5.jpg" height="1080" width="1920" class="slide" alt="index_kilt_5"/>
+        </div>
+        <!-- BUTTONS -->
+        <button class="arrow left">&#10094;</button>
+        <button class="arrow right">&#10095;</button>
+        <!-- INDICATOR DOTS -->
+        <div class="dots-container">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+            <span class="dot" data-index="4"></span>
+        </div>
+    </div>
+    <!-- BUTTONS -->
+    <div class="actions">
+        <div class="btn"><a href="shop.html" class="shop-btn">SHOP</a></div>
+        <div class="btn"><a href="about.html" class="learn-more-btn">LEARN MORE</a></div>
+    </div>
+    <!-- FOOTER -->
+    <footer>
+        <a href="index.html"><img src="img/Got_kilt_vertical_logo_copy.png" height="160" width="160" alt="Got Kilt Logo"/></a>
+    </footer>
+</div>
+<!-- JAVASCRIPT INDEX FUNCTION  -->
+<script>
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(i) {
+        slides.forEach(s => s.classList.remove('active'));
+        dots.forEach(d => d.classList.remove('active'));
+        slides[i].classList.add('active');
+        dots[i].classList.add('active');
+        currentIndex = i;
+    }
+
+    function nextSlide() {
+        showSlide((currentIndex + 1) % slides.length);
+    }
+
+    function prevSlide() {
+        showSlide((currentIndex - 1 + slides.length) % slides.length);
+    }
+
+    setInterval(nextSlide, 5000);
+
+    document.querySelector('.arrow.right').onclick = nextSlide;
+    document.querySelector('.arrow.left').onclick = prevSlide;
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            showSlide(parseInt(dot.dataset.index));
+        });
+    });
+</script>
+</body>
+</html>
+
+
